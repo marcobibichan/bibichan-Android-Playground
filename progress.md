@@ -63,7 +63,7 @@
   - 總行數：約2500+行
 
 - **其他**：
-  - index.md：1個（已更新為繁體中文）
+  - README.md：1個（已更新為繁體中文）
   - progress.md：1個（本檔案）
 
 ---
@@ -77,7 +77,7 @@ git add c/lesson-01-entry/
 git add c/lesson-02-types/
 git add kotlin/lesson-01-entry/
 git add kotlin/lesson-02-types/
-git add index.md
+git add README.md
 git add progress.md
 ```
 
@@ -89,7 +89,7 @@ git commit -m "feat: Add lesson 01-02 for C and Kotlin
 - Add C lesson 02: Basic types
 - Add Kotlin lesson 01: Hello World and environment
 - Add Kotlin lesson 02: Type system
-- Update index.md with Traditional Chinese content
+- Update README.md with Traditional Chinese content
 - Add progress.md for tracking
 
 Each lesson includes:
