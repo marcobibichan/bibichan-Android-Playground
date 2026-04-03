@@ -1,0 +1,95 @@
+
+你是一位C語言和Kotlin專家，專精Android NDK與FFmpeg高解析度音訊開發（FLAC/WAV 192kHz/24bit解碼、重取樣、JNI整合）。
+
+在bibichan-Android-Playground/專案的submodule中，生成一本完整Markdown書籍「C/Kotlin從入門到精通：打造Hi-Res FFmpeg音樂播放器」。
+
+## 📁 檔案結構要求
+project-root/
+├── index.md                    # 總目錄
+├── c/
+│   ├── lesson-01-entry/
+│   │   ├── README.md          # 300+行詳細教學
+│   │   ├── ex01-hello.c
+│   │   ├── ex02-compile.c
+│   │   └── Makefile
+│   └── ... (其他課程)
+└── kotlin/
+    ├── lesson-01-entry/
+    │   ├── README.md
+    │   ├── MainActivity.kt
+    │   └── build.gradle.kts
+    └── ...
+
+## 📖 每課README.md固定10段結構（不可省略，每段至少50行）
+
+1. **課程定位**：這課在整本書的位置、前置知識清單、學完後能解決什麼實際問題
+2. **核心概念地圖**：mermaid流程圖展示本課所有概念間關係
+3. **概念深度解析**：每個術語定義→內部原理→限制→編譯器行為→汇編視角
+4. **語法完整規格**：BNF語法、邊界條件、未定義行為(UB)、最佳實踐
+5. **範例逐行註解**：每個example檔案都要完整貼出+逐行解析
+6. **錯誤案例對照表**：常見錯誤code → 錯誤訊息 → 根本原因 → 正確寫法
+7. **效能與記憶體分析**：stack/heap使用、cache線、alignment、時間複雜度、FFmpeg情境
+8. **Hi-Res音訊實戰連結**：本課如何應用到FFmpeg解碼管道、Android播放、JNI傳輸
+9. **練習題與解答**：3個漸進式練習題（基礎/進階/FFmpeg實戰）+完整解答
+10. **下一課銜接橋樑**：學完本課後，下課會如何使用這些知識
+
+## 💾 Examples要求（每課至少5個）
+ex01-minimal.c          # 最簡可運行版本
+ex02-deliberate-bug.c   # 故意犯常見錯誤，用來對照
+ex03-realworld.c        # 接近FFmpeg/Android實際用法
+ex04-advanced.c         # 展示最佳實踐/進階技巧
+ex05-benchmark.c        # 效能測試版本（含計時）
+- C檔案：完整含main()、編譯指令（gcc/clang/NDK）、Makefile/CMakeLists.txt
+- Kotlin檔案：完整含package/main、Android context、build.gradle片段
+- 每個檔案開頭3行註解：用途、依賴、編譯/運行指令
+
+## 🎯 C語言重點（針對FFmpeg）
+lesson-11+ 必須包含真實FFmpeg API：
+- libavformat/avformat.h → AVFormatContext, avformat_open_input()
+- libavcodec/avcodec.h → AVCodecContext, avcodec_send_packet/receive_frame()
+- libswresample/swresample.h → SwrContext, 192kHz→44.1kHz重取樣
+- libavutil/opt.h → 參數配置、錯誤檢查模式
+- NDK整合：CMakeLists.txt + JNIEXPORT + JNIEnv buffer傳輸
+- Assembly inline：SIMD加速（如AVX2內聯匯編解碼）
+
+## 🎯 Kotlin重點（針對Android音訊）
+lesson-12+ 必須包含真實Android API：
+- MediaPlayer → setDataSource() + prepareAsync()
+- AudioTrack → 24bit/192kHz配置、write()非阻塞
+- ExoPlayer + Media3 → Hi-Res支援、gapless播放
+- JNI整合：nativeLoadLibrary() + @JvmStatic + ByteBuffer傳輸
+- Jetpack Compose UI → SeekBar + Waveform視覺化
+- Coroutine + Flow → 播放狀態串流、buffer監控
+
+## ✍️ 語言規範
+✅ 正確：
+volatile關鍵字在FFmpeg avcodec_receive_frame()確保AVFrame不被優化器重排
+
+✅ 程式碼註解：全英文（industry standard）
+✅ 錯誤訊息：保留原英文 + 中文解析
+✅ API名稱：永遠保留原英文（AVCodecContext, suspend, CoroutineScope）
+
+## 🚀 生成流程
+1. 先寫 index.md 總目錄（含所有課程簡介）
+2. 按順序生成 c/lesson-01-entry/ → c/lesson-02-types → ... → kotlin/lesson-14-jni-ffmpeg/
+3. 每完成一個lesson立即顯示git add/mv指令
+4. 最後生成完整git commit訊息 + push指令
+
+## 🎯 完成標準檢查清單
+☑️ 每課README.md > 800行（含所有段落）
+☑️ 每個概念至少500字深度解析
+☑️ 每個FFmpeg API有真實可編譯範例
+☑️ 每個Android組件有完整Activity/Fragment
+☑️ 錯誤處理涵蓋80%常見crash原因
+☑️ 效能分析包含實際benchmark數字
+☑️ Git結構完全符合上述規範
+
+嚴格遵循此結構，發揮GLM-5工程文檔生成優勢，確保每課都是獨立完整知識單元，能直接應用到Hi-Res FFmpeg Android播放器開發。
+
+開始生成！
+***
+
+*具體FFmpeg API列出
+- ✅ 每課**固定10真實Android組件要求**具體FFmpeg A行數硬性規定空話  
+- ✅ *Git指令自動生成求**，不是玩具範例
+- ✅ **行數硬性規定**真正能用來開發的書it指令自動生成**，零操作成本
