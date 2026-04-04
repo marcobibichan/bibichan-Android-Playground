@@ -1,223 +1,223 @@
-# C/Kotlin從入門到精通：打造Hi-Res FFmpeg音樂播放器
+# C/Kotlin from Beginner to Master: Building Hi-Res FFmpeg Music Player
 
-> 完整指南：Android NDK與FFmpeg高解析度音訊開發（24-bit/192kHz FLAC/WAV）
+> Complete Guide: Android NDK and FFmpeg High-Resolution Audio Development (24-bit/192kHz FLAC/WAV)
 
-## 關於本書
+## About This Book
 
-本書專為Android開發者設計，從C語言基礎到Kotlin進階特性，深入探討如何使用FFmpeg實現Hi-Res音訊播放（24-bit/192kHz FLAC/WAV）。每一課包含學習目標、理論解釋、程式碼範例、常見錯誤和練習題。
+This book is designed for Android developers, covering C language fundamentals to Kotlin advanced features, with deep exploration of Hi-Res audio playback using FFmpeg (24-bit/192kHz FLAC/WAV). Each lesson includes learning objectives, theoretical explanations, code examples, common errors, and exercises.
 
-### 目標讀者
-- 想要掌握NDK和JNI的Android開發者
-- 實現Hi-Res音訊處理的音訊開發者
-- 從Java/Kotlin轉向C/C++的開發者
-
----
-
-## 目錄
-
-### 第一部分：C語言基礎到進階
-
-| 課程 | 主題 | 描述 |
-|------|------|------|
-| [第一課](c/lesson-01-entry/README.md) | Hello World與編譯流程 | gcc/clang/NDK編譯、預處理器、#include |
-| [第二課](c/lesson-02-types/README.md) | 基本型別 | typedef、列舉、const/volatile、sizeof/alignof |
-| [第三課](c/lesson-03-control/README.md) | 控制流程 | if/switch、迴圈、goto、條件運算子 |
-| [第四課](c/lesson-04-functions/README.md) | 函數 | 定義/宣告、可變參數、遞迴、static inline |
-| [第五課](c/lesson-05-pointers/README.md) | 指標 | 指標算術、陣列退化、多維陣列、函數指標 |
-| [第六課](c/lesson-06-memory/README.md) | 記憶體管理 | malloc/free、calloc/realloc、記憶體對齊、緩衝區溢位 |
-| [第七課](c/lesson-07-strings/README.md) | 字串處理 | 字元陣列、str*函數、空終止字串 |
-| [第八課](c/lesson-08-structs/README.md) | 結構體 | struct/union、位元欄位、自引用結構 |
-| [第九課](c/lesson-09-fileio/README.md) | 檔案I/O | stdio、二進位I/O、errno錯誤處理 |
-| [第十課](c/lesson-10-advanced/README.md) | 進階特性 | C11執行緒、原子操作、可變參數、_Generic |
-| [第十一課](c/lesson-11-ffmpeg-basics/README.md) | FFmpeg基礎 | libavformat、AVFormatContext、封包讀取 |
-| [第十二課](c/lesson-12-ffmpeg-decode/README.md) | FFmpeg解碼 | AVCodecContext、解碼管道、幀處理 |
-| [第十三課](c/lesson-13-ffmpeg-resample/README.md) | FFmpeg重取樣 | SwrContext、192kHz/24-bit hi-res、通道佈局 |
-| [第十四課](c/lesson-14-ndk-ffmpeg/README.md) | NDK整合 | Android.mk/CMake、JNI、音訊管道 |
-
-### 第二部分：Kotlin語言與Android開發
-
-| 課程 | 主題 | 描述 |
-|------|------|------|
-| [第一課](kotlin/lesson-01-entry/README.md) | Hello World | Android Studio、package/main、REPL |
-| [第二課](kotlin/lesson-02-types/README.md) | 型別系統 | val/var、型別推斷、可空型別 |
-| [第三課](kotlin/lesson-03-control/README.md) | 控制流程 | if/when、範圍、標籤跳轉 |
-| [第四課](kotlin/lesson-04-functions/README.md) | 進階函數 | 高階函數、lambda、inline、tailrec |
-| [第五課](kotlin/lesson-05-nullsafety/README.md) | 空值安全 | ?運算子、!!、安全呼叫、作用域函數 |
-| [第六課](kotlin/lesson-06-collections/README.md) | 集合 | List/Map/Set、map/filter/fold操作 |
-| [第七課](kotlin/lesson-07-oop-basics/README.md) | OOP基礎 | 類別、建構子、繼承 |
-| [第八課](kotlin/lesson-08-oop-advanced/README.md) | OOP進階 | 資料類別、密封類別、擴展函數 |
-| [第九課](kotlin/lesson-09-coroutines/README.md) | 協程 | 掛起函數、CoroutineScope、Flow |
-| [第十課](kotlin/lesson-10-generics/README.md) | 泛型 | 變異、reified、星投影 |
-| [第十一課](kotlin/lesson-11-fileio/README.md) | 檔案處理 | java.io、kotlinx.serialization |
-| [第十二課](kotlin/lesson-12-android-basics/README.md) | Android基礎 | Activity/Fragment、Intent、生命週期 |
-| [第十三課](kotlin/lesson-13-media-audio/README.md) | 媒體播放 | MediaPlayer、AudioTrack、ExoPlayer |
-| [第十四課](kotlin/lesson-14-jni-ffmpeg/README.md) | JNI整合 | 呼叫C FFmpeg、@Native、緩衝區傳遞 |
+### Target Audience
+- Android developers wanting to master NDK and JNI
+- Audio developers implementing Hi-Res audio processing
+- Developers transitioning from Java/Kotlin to C/C++
 
 ---
 
-## 專案結構
+## Table of Contents
+
+### Part 1: C Language Fundamentals to Advanced
+
+| Lesson | Topic | Description |
+|--------|-------|-------------|
+| [Lesson 01](c/lesson-01-entry/README.md) | Hello World & Compilation | gcc/clang/NDK compilation, preprocessor, #include |
+| [Lesson 02](c/lesson-02-types/README.md) | Basic Types | typedef, enum, const/volatile, sizeof/alignof |
+| [Lesson 03](c/lesson-03-control/README.md) | Control Flow | if/switch, loops, goto, conditional operator |
+| [Lesson 04](c/lesson-04-functions/README.md) | Functions | Definition/declaration, variadic, recursion, static inline |
+| [Lesson 05](c/lesson-05-pointers/README.md) | Pointers | Pointer arithmetic, array decay, multidimensional arrays, function pointers |
+| [Lesson 06](c/lesson-06-memory/README.md) | Memory Management | malloc/free, calloc/realloc, memory alignment, buffer overflow |
+| [Lesson 07](c/lesson-07-strings/README.md) | String Handling | Character arrays, str* functions, null-terminated strings |
+| [Lesson 08](c/lesson-08-structs/README.md) | Structures | struct/union, bit fields, self-referential structures |
+| [Lesson 09](c/lesson-09-fileio/README.md) | File I/O | stdio, binary I/O, errno error handling |
+| [Lesson 10](c/lesson-10-advanced/README.md) | Advanced Features | C11 threads, atomic operations, variadic, _Generic |
+| [Lesson 11](c/lesson-11-ffmpeg-basics/README.md) | FFmpeg Basics | libavformat, AVFormatContext, packet reading |
+| [Lesson 12](c/lesson-12-ffmpeg-decode/README.md) | FFmpeg Decoding | AVCodecContext, decode pipeline, frame processing |
+| [Lesson 13](c/lesson-13-ffmpeg-resample/README.md) | FFmpeg Resampling | SwrContext, 192kHz/24-bit hi-res, channel layout |
+| [Lesson 14](c/lesson-14-ndk-ffmpeg/README.md) | NDK Integration | Android.mk/CMake, JNI, audio pipeline |
+
+### Part 2: Kotlin Language & Android Development
+
+| Lesson | Topic | Description |
+|--------|-------|-------------|
+| [Lesson 01](kotlin/lesson-01-entry/README.md) | Hello World | Android Studio, package/main, REPL |
+| [Lesson 02](kotlin/lesson-02-types/README.md) | Type System | val/var, type inference, nullable types |
+| [Lesson 03](kotlin/lesson-03-control/README.md) | Control Flow | if/when, ranges, label jumps |
+| [Lesson 04](kotlin/lesson-04-functions/README.md) | Advanced Functions | Higher-order functions, lambda, inline, tailrec |
+| [Lesson 05](kotlin/lesson-05-nullsafety/README.md) | Null Safety | ? operator, !!, safe calls, scope functions |
+| [Lesson 06](kotlin/lesson-06-collections/README.md) | Collections | List/Map/Set, map/filter/fold operations |
+| [Lesson 07](kotlin/lesson-07-oop-basics/README.md) | OOP Basics | Classes, constructors, inheritance |
+| [Lesson 08](kotlin/lesson-08-oop-advanced/README.md) | OOP Advanced | Data classes, sealed classes, extension functions |
+| [Lesson 09](kotlin/lesson-09-coroutines/README.md) | Coroutines | Suspend functions, CoroutineScope, Flow |
+| [Lesson 10](kotlin/lesson-10-generics/README.md) | Generics | Variance, reified, star projection |
+| [Lesson 11](kotlin/lesson-11-fileio/README.md) | File Handling | java.io, kotlinx.serialization |
+| [Lesson 12](kotlin/lesson-12-android-basics/README.md) | Android Basics | Activity/Fragment, Intent, lifecycle |
+| [Lesson 13](kotlin/lesson-13-media-audio/README.md) | Media Playback | MediaPlayer, AudioTrack, ExoPlayer |
+| [Lesson 14](kotlin/lesson-14-jni-ffmpeg/README.md) | JNI Integration | Call C FFmpeg, @Native, buffer passing |
+
+---
+
+## Project Structure
 
 ```
 bibichan-Android-Playground/
-├── index.md              # 書籍索引（本檔案）
-├── c/                    # C語言課程
+├── README.md           # Book index (this file)
+├── c/                  # C language lessons
 │   ├── lesson-01-entry/
-│   │   ├── README.md     # 課程內容
-│   │   └── examples/     # 程式碼範例
+│   │   ├── README.md   # Lesson content
+│   │   └── examples/   # Code examples
 │   ├── lesson-02-types/
 │   └── ...
-├── kotlin/               # Kotlin語言課程
+├── kotlin/             # Kotlin language lessons
 │   ├── lesson-01-entry/
 │   │   ├── README.md
 │   │   └── examples/
 │   └── ...
-└── prompt.txt            # 書籍規格
+└── prompt.md           # Book specifications
 ```
 
 ---
 
-## 學習路徑
+## Learning Path
 
 ```mermaid
 graph TD
-    A[C基礎 第一至九課] --> B[C進階 第十課]
-    B --> C[FFmpeg 第十一至十三課]
-    C --> D[NDK整合 第十四課]
+    A[C Basics Lessons 1-9] --> B[C Advanced Lesson 10]
+    B --> C[FFmpeg Lessons 11-13]
+    C --> D[NDK Integration Lesson 14]
 
-    E[Kotlin基礎 第一至八課] --> F[協程 第九課]
-    F --> G[Android基礎 第十至十二課]
-    G --> H[媒體播放 第十三課]
-    H --> I[JNI整合 第十四課]
+    E[Kotlin Basics Lessons 1-8] --> F[Coroutines Lesson 9]
+    F --> G[Android Basics Lessons 10-12]
+    G --> H[Media Playback Lesson 13]
+    H --> I[JNI Integration Lesson 14]
 
-    D --> J[Hi-Res音訊播放器]
+    D --> J[Hi-Res Audio Player]
     I --> J
 ```
 
 ---
 
-## Hi-Res音訊專案
+## Hi-Res Audio Project
 
-本書的最終目標是構建一個完整的Hi-Res音訊播放器：
+The ultimate goal of this book is to build a complete Hi-Res audio player:
 
-- **支援格式**：FLAC、WAV、ALAC、DSD
-- **取樣率**：最高384kHz
-- **位元深度**：16/24/32 bit
-- **架構**：
-  - C層：FFmpeg解碼 + SwrContext重取樣
-  - JNI層：音訊緩衝區傳遞
-  - Kotlin層：ExoPlayer/AudioTrack播放
+- **Supported Formats**: FLAC, WAV, ALAC, DSD
+- **Sample Rates**: Up to 384kHz
+- **Bit Depths**: 16/24/32 bit
+- **Architecture**:
+  - C Layer: FFmpeg decoding + SwrContext resampling
+  - JNI Layer: Audio buffer passing
+  - Kotlin Layer: ExoPlayer/AudioTrack playback
 
-### 技術架構
+### Technical Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    Kotlin/Android層                      │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐  │
-│  │  Compose UI │  │  ViewModel  │  │   MediaSession  │  │
-│  └─────────────┘  └─────────────┘  └─────────────────┘  │
-│                          │                               │
-│                    ┌─────▼─────┐                         │
-│                    │ AudioTrack│                         │
-│                    └─────┬─────┘                         │
+│ Kotlin/Android Layer                                    │
+│ ┌─────────────┐ ┌─────────────┐ ┌─────────────────┐    │
+│ │ Compose UI  │ │ ViewModel   │ │ MediaSession    │    │
+│ └─────────────┘ └─────────────┘ └─────────────────┘    │
+│                         │                               │
+│                   ┌─────▼─────┐                         │
+│                   │ AudioTrack│                         │
+│                   └─────┬─────┘                         │
 └──────────────────────────┼──────────────────────────────┘
                            │ JNI
 ┌──────────────────────────▼──────────────────────────────┐
-│                      C/NDK層                             │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐  │
-│  │ FFmpeg解碼  │  │ SwrContext  │  │   JNI介面       │  │
-│  │ avcodec     │  │ 重取樣      │  │   JNIEXPORT     │  │
-│  └─────────────┘  └─────────────┘  └─────────────────┘  │
-│                          │                               │
-│                    ┌─────▼─────┐                         │
-│                    │ 音訊緩衝區│                         │
-│                    └───────────┘                         │
+│ C/NDK Layer                                             │
+│ ┌─────────────┐ ┌─────────────┐ ┌─────────────────┐    │
+│ │ FFmpeg      │ │ SwrContext  │ │ JNI Interface   │    │
+│ │ avcodec     │ │ Resampling  │ │ JNIEXPORT       │    │
+│ └─────────────┘ └─────────────┘ └─────────────────┘    │
+│                         │                               │
+│                   ┌─────▼─────┐                         │
+│                   │Audio Buffer│                        │
+│                   └───────────┘                         │
 └─────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## FFmpeg API涵蓋範圍
+## FFmpeg API Coverage
 
-本書涵蓋以下FFmpeg API：
+This book covers the following FFmpeg APIs:
 
-### libavformat（封裝格式處理）
-- `AVFormatContext` - 格式上下文
-- `avformat_open_input()` - 開啟輸入檔案
-- `avformat_find_stream_info()` - 尋找流資訊
-- `av_read_frame()` - 讀取封包
-- `avformat_close_input()` - 關閉輸入
+### libavformat (Container Format Handling)
+- `AVFormatContext` - Format context
+- `avformat_open_input()` - Open input file
+- `avformat_find_stream_info()` - Find stream info
+- `av_read_frame()` - Read packet
+- `avformat_close_input()` - Close input
 
-### libavcodec（編解碼處理）
-- `AVCodecContext` - 編解碼上下文
-- `AVCodec` - 編解碼器
-- `avcodec_find_decoder()` - 尋找解碼器
-- `avcodec_open2()` - 開啟編解碼器
-- `avcodec_send_packet()` - 發送封包
-- `avcodec_receive_frame()` - 接收幀
+### libavcodec (Codec Handling)
+- `AVCodecContext` - Codec context
+- `AVCodec` - Codec
+- `avcodec_find_decoder()` - Find decoder
+- `avcodec_open2()` - Open codec
+- `avcodec_send_packet()` - Send packet
+- `avcodec_receive_frame()` - Receive frame
 
-### libswresample（重取樣）
-- `SwrContext` - 重取樣上下文
-- `swr_alloc()` - 分配上下文
-- `swr_init()` - 初始化
-- `swr_convert()` - 轉換樣本
-- `swr_free()` - 釋放上下文
+### libswresample (Resampling)
+- `SwrContext` - Resampling context
+- `swr_alloc()` - Allocate context
+- `swr_init()` - Initialize
+- `swr_convert()` - Convert samples
+- `swr_free()` - Free context
 
-### libavutil（工具函數）
-- `AVFrame` - 音訊/視訊幀
-- `AVPacket` - 壓縮資料封包
-- `av_frame_alloc()` - 分配幀
-- `av_packet_alloc()` - 分配封包
-- `av_opt_set_int()` - 設定選項
+### libavutil (Utility Functions)
+- `AVFrame` - Audio/video frame
+- `AVPacket` - Compressed data packet
+- `av_frame_alloc()` - Allocate frame
+- `av_packet_alloc()` - Allocate packet
+- `av_opt_set_int()` - Set option
 
 ---
 
-## Android組件涵蓋範圍
+## Android Component Coverage
 
-本書涵蓋以下Android API：
+This book covers the following Android APIs:
 
-### 媒體播放
-- `MediaPlayer` - 基礎媒體播放
-- `AudioTrack` - 原始音訊播放
-- `ExoPlayer` / `Media3` - 進階媒體播放器
+### Media Playback
+- `MediaPlayer` - Basic media playback
+- `AudioTrack` - Raw audio playback
+- `ExoPlayer` / `Media3` - Advanced media player
 
-### 音訊配置
-- `AudioFormat` - 音訊格式配置
-- `AudioManager` - 音訊管理
-- `AudioAttributes` - 音訊屬性
+### Audio Configuration
+- `AudioFormat` - Audio format configuration
+- `AudioManager` - Audio management
+- `AudioAttributes` - Audio attributes
 
-### JNI整合
-- `native`關鍵字 - 宣告原生方法
-- `JNI_OnLoad` - 原生庫載入
-- `JNIEnv` - JNI環境指標
-- `jbyteArray` / `jintArray` - JNI陣列型別
+### JNI Integration
+- `native` keyword - Declare native methods
+- `JNI_OnLoad` - Native library loading
+- `JNIEnv` - JNI environment pointer
+- `jbyteArray` / `jintArray` - JNI array types
 
 ### Jetpack Compose
-- `@Composable` - 可組合函數
-- `State` / `MutableState` - 狀態管理
-- `LaunchedEffect` - 副作用處理
-- `Flow` - 資料流
+- `@Composable` - Composable functions
+- `State` / `MutableState` - State management
+- `LaunchedEffect` - Side effect handling
+- `Flow` - Data stream
 
 ---
 
-## 開發環境設置
+## Development Environment Setup
 
-### 必要工具
+### Required Tools
 
-1. **Android Studio** - Hedgehog (2023.1.1) 或更新版本
-2. **Android NDK** - r25c 或更新版本
-3. **CMake** - 3.22.1 或更新版本
-4. **FFmpeg** - 6.0 或更新版本
+1. **Android Studio** - Hedgehog (2023.1.1) or later
+2. **Android NDK** - r25c or later
+3. **CMake** - 3.22.1 or later
+4. **FFmpeg** - 6.0 or later
 
-### FFmpeg編譯（Android）
+### FFmpeg Compilation (Android)
 
 ```bash
-# 下載FFmpeg原始碼
+# Download FFmpeg source
 git clone https://git.ffmpeg.org/ffmpeg.git
 
-# 設定NDK路徑
+# Set NDK path
 export NDK=/path/to/android-ndk
 
-# 編譯ARM64版本
+# Compile ARM64 version
 ./configure \
   --target-os=android \
   --arch=aarch64 \
@@ -239,10 +239,10 @@ make install
 
 ---
 
-## 授權
+## License
 
-本書以 [CC BY-NC-SA 4.0](LICENSE) 授權發布。
+This book is published under [CC BY-NC-SA 4.0](LICENSE).
 
 ---
 
-*最後更新：2026-04-03*
+*Last updated: 2026-04-03*
