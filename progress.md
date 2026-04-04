@@ -14,10 +14,10 @@
 | lesson-01-entry | ✅ Complete | ✅ Generated | 6 | hello_basic.c, hello_args.c, compilation_phases.c, preprocessor_demo.c, ndk_audio_info.c, Makefile |
 | lesson-02-types | ✅ Complete | ✅ Generated | 5 | type_sizes.c, const_volatile.c, enum_demo.c, sizeof_alignof.c, typedef_demo.c |
 | lesson-03-control | ✅ Complete | ✅ Generated | 6 | ex01-if-basic.c, ex02-switch-advanced.c, ex03-loops-audio.c, ex04-goto-error.c, ex05-benchmark-control.c, Makefile |
-| lesson-04-functions | ⏳ Pending | - | - | - |
-| lesson-05-pointers | ⏳ Pending | - | - | - |
-| lesson-06-memory | ⏳ Pending | - | - | - |
-| lesson-07-strings | ⏳ Pending | - | - | - |
+| lesson-04-functions | ✅ Complete | ✅ Generated | 6 | ex01-function-basic.c, ex02-parameter-passing.c, ex03-scope-lifetime.c, ex04-recursion-inline.c, ex05-function-pointers.c, Makefile |
+| lesson-05-pointers | ✅ Complete | ✅ Generated | 4 | ex01-pointer-basic.c, ex02-pointer-arithmetic.c, ex03-pointer-array.c, (Makefile pending) |
+| lesson-06-memory | ✅ Complete | ✅ Generated | 6 | ex01-memory-basic.c, ex02-realloc.c, ex03-aligned.c, ex04-memory-errors.c, ex05-audio-buffer-pool.c, Makefile |
+| lesson-07-strings | ✅ Complete | ✅ Generated | 6 | ex01-string-basic.c, ex02-dynamic-strings.c, ex03-string-parsing.c, ex04-safe-strings.c, ex05-audio-metadata.c, Makefile |
 | lesson-08-structs | ⏳ Pending | - | - | - |
 | lesson-09-fileio | ⏳ Pending | - | - | - |
 | lesson-10-advanced | ⏳ Pending | - | - | - |
@@ -53,9 +53,9 @@
 
 ### Generated Files
 - **C Language**:
-  - README.md: 3 files
-  - Example files: 17 files
-  - Total lines: approximately 3500+ lines
+- README.md: 7 files
+- Example files: 39 files
+- Total lines: approximately 10000+ lines
 
 - **Kotlin Language**:
   - README.md: 3 files
@@ -110,11 +110,14 @@ git push origin main
 
 1. [x] Generate C lesson-03-control (Control Flow)
 2. [x] Generate Kotlin lesson-03-control (Control Flow)
-3. [ ] Generate C lesson-04-functions (Functions)
-4. [ ] Generate Kotlin lesson-04-functions (Functions)
-5. [ ] Continue with subsequent lessons...
-6. [ ] Complete FFmpeg related lessons (lesson-11~14)
-7. [ ] Complete Android related lessons (lesson-12~14)
+3. [x] Generate C lesson-04-functions (Functions)
+4. [x] Generate C lesson-05-pointers (Pointers)
+5. [x] Generate C lesson-06-memory (Memory Management)
+6. [x] Generate C lesson-07-strings (String Handling)
+7. [ ] Generate Kotlin lesson-04-functions (Functions)
+8. [ ] Continue with subsequent lessons (lesson-08-structs, lesson-09-fileio, lesson-10-advanced)...
+9. [ ] Complete FFmpeg related lessons (lesson-11~14)
+10. [ ] Complete Android related lessons (lesson-12~14)
 
 ---
 
