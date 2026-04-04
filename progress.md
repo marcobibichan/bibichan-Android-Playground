@@ -2,7 +2,7 @@
 
 ## Project Information
 - **Book Title**: C/Kotlin from Beginner to Master: Building Hi-Res FFmpeg Music Player
-- **Generation Date**: 2026-04-03
+- **Generation Date**: 2026-04-04
 - **Status**: In Progress
 
 ---
@@ -18,8 +18,8 @@
 | lesson-05-pointers | ✅ Complete | ✅ Generated | 4 | ex01-pointer-basic.c, ex02-pointer-arithmetic.c, ex03-pointer-array.c, (Makefile pending) |
 | lesson-06-memory | ✅ Complete | ✅ Generated | 6 | ex01-memory-basic.c, ex02-realloc.c, ex03-aligned.c, ex04-memory-errors.c, ex05-audio-buffer-pool.c, Makefile |
 | lesson-07-strings | ✅ Complete | ✅ Generated | 6 | ex01-string-basic.c, ex02-dynamic-strings.c, ex03-string-parsing.c, ex04-safe-strings.c, ex05-audio-metadata.c, Makefile |
-| lesson-08-structs | ⏳ Pending | - | - | - |
-| lesson-09-fileio | ⏳ Pending | - | - | - |
+| lesson-08-structs | ✅ Complete | ✅ Generated | 6 | ex01-struct-basic.c, ex02-struct-pointers.c, ex03-unions.c, ex04-bitfields-padding.c, ex05-audio-config.c, Makefile |
+| lesson-09-fileio | ✅ Complete | ✅ Generated | 6 | ex01-file-basic.c, ex02-wav-header.c, ex03-large-file.c, ex04-playlist-file.c, ex05-file-copy.c, Makefile |
 | lesson-10-advanced | ⏳ Pending | - | - | - |
 | lesson-11-ffmpeg-basics | ⏳ Pending | - | - | FFmpeg API starts |
 | lesson-12-ffmpeg-decode | ⏳ Pending | - | - | - |
@@ -53,9 +53,9 @@
 
 ### Generated Files
 - **C Language**:
-- README.md: 7 files
-- Example files: 39 files
-- Total lines: approximately 10000+ lines
+  - README.md: 9 files
+  - Example files: 51 files
+  - Total lines: approximately 15000+ lines
 
 - **Kotlin Language**:
   - README.md: 3 files
@@ -73,28 +73,31 @@
 ### Add all generated files
 ```bash
 cd bibichan-Android-Playground
-git add c/lesson-01-entry/
-git add c/lesson-02-types/
-git add kotlin/lesson-01-entry/
-git add kotlin/lesson-02-types/
-git add README.md
-git add progress.md
+git add c/lesson-08-structs/
+git add c/lesson-09-fileio/
 ```
 
 ### Commit changes
 ```bash
-git commit -m "feat: Add lesson 01-02 for C and Kotlin
+git commit -m "feat: Add lesson 08-09 for C language
 
-- Add C lesson 01: Hello World and compilation
-- Add C lesson 02: Basic types
-- Add Kotlin lesson 01: Hello World and environment
-- Add Kotlin lesson 02: Type system
-- Update README.md with English content
-- Add progress.md for tracking
+- Add C lesson 08: Structures and Unions
+  - Basic struct declaration and initialization
+  - Structure pointers and dynamic allocation
+  - Unions for audio sample storage
+  - Bit fields and structure padding
+  - Complete audio configuration structure
+
+- Add C lesson 09: File I/O Operations
+  - Basic file operations (open, read, write, close)
+  - WAV file header parsing
+  - Large file processing with buffering
+  - M3U playlist file handling
+  - File copy with progress and verification
 
 Each lesson includes:
 - Detailed README.md with 10 sections
-- Multiple code examples
+- Multiple code examples (5+ per lesson)
 - Hi-Res audio practical applications
 - Exercises and solutions"
 ```
@@ -108,16 +111,13 @@ git push origin main
 
 ## Next Steps
 
-1. [x] Generate C lesson-03-control (Control Flow)
-2. [x] Generate Kotlin lesson-03-control (Control Flow)
-3. [x] Generate C lesson-04-functions (Functions)
-4. [x] Generate C lesson-05-pointers (Pointers)
-5. [x] Generate C lesson-06-memory (Memory Management)
-6. [x] Generate C lesson-07-strings (String Handling)
-7. [ ] Generate Kotlin lesson-04-functions (Functions)
-8. [ ] Continue with subsequent lessons (lesson-08-structs, lesson-09-fileio, lesson-10-advanced)...
-9. [ ] Complete FFmpeg related lessons (lesson-11~14)
-10. [ ] Complete Android related lessons (lesson-12~14)
+1. [x] Generate C lesson-08-structs (Structures and Unions)
+2. [x] Generate C lesson-09-fileio (File I/O Operations)
+3. [ ] Generate C lesson-10-advanced (Advanced C Concepts)
+4. [ ] Continue with FFmpeg lessons (lesson-11~14)
+5. [ ] Generate Kotlin lesson-04-functions (Functions)
+6. [ ] Continue with subsequent Kotlin lessons
+7. [ ] Complete Android related lessons (lesson-12~14)
 
 ---
 
@@ -128,3 +128,5 @@ git push origin main
 - Examples include Hi-Res audio practical applications
 - Code comments use English
 - Error messages kept in English with Chinese analysis
+- Lesson 08 covers structures, unions, bit fields, and nested structures
+- Lesson 09 covers file I/O, WAV parsing, playlist handling, and large file processing
